@@ -20,8 +20,7 @@ public class Main {
 		OmnivoxScraper scraper = null;
 		Assembler assembler = null;
 
-		String cegepName = args[0];
-		switch (cegepName.toLowerCase()) {
+		switch (args[0].toLowerCase()) {
 		case "champlain":
 			scraper = new ChamplainScraper();
 			assembler = new ChamplainAssembler();
@@ -33,9 +32,7 @@ public class Main {
 			break;
 
 		default:
-			System.out.println("The currently supported CEGEPs are:");
-			System.out.println("\t- Champlain");
-			System.out.println("\t- Maisonneuve");
+			System.out.println("The currently supported CEGEPs are:\n\t- Champlain\n\t- Maisonneuve\n\n" + args[0] + "is not supported");
 			System.exit(0);
 		}
 
@@ -47,9 +44,9 @@ public class Main {
 
 		String studentNumber = args[1];
 		String password = args[2];
-		
+
 		manager.login(studentNumber, password);
-		
+
 		// Getting and printing documents
 		manager.getDocuments();
 		printer.printDocuments();
@@ -64,6 +61,7 @@ public class Main {
 
 		// Print what's new
 		scraper.printWhatsNew();
+		System.exit(0);
 	}
 
 }
